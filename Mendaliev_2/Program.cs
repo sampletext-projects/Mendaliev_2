@@ -32,33 +32,35 @@ namespace Mendaliev_2
             }
             else
             {
-                if (b < 0)
+                if (b >= 0)
+                {
+                    a = b * b - b * Math.Sqrt(b);
+                }
+                else
                 {
                     Console.WriteLine("Ошибка! b < 0");
                     return;
                 }
-                else
-                {
-                    a = b * b - b * Math.Sqrt(b);
-                }
             }
 
             double s = Math.Sqrt(a * a + b);
-            if (s == Math.PI / 2 || s == 3 * Math.PI / 2)
+            if (s != Math.PI / 2 && s != 3 * Math.PI / 2)
+            {
+                double t = Math.Tan(s);
+                if (t != a)
+                {
+                    double Z = (a * a + Math.Cos(a)) / (a - t);
+                    Console.WriteLine("Z = " + Z);
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка! a = tg(a * a + b)");
+                }
+            }
+            else
             {
                 Console.WriteLine("Ошибка! a * a + b = 0");
-                return;
             }
-
-            double t = Math.Tan(s);
-            if (t == a)
-            {
-                Console.WriteLine("Ошибка! a = tg(a * a + b)");
-                return;
-            }
-
-            double Z = (a * a + Math.Cos(a)) / (a - t);
-            Console.WriteLine("Z = " + Z);
         }
     }
 }
